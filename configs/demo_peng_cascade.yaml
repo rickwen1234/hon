@@ -1,0 +1,6 @@
+input_dir: outputs/demo_multilayer
+layer_a: A
+layer_b: B
+output_dir: outputs/demo_peng_cascade
+initial_failure_fraction: 0.1
+seed: 42

@@ -6,7 +6,7 @@
 
 ### Technical questions? Please contact i[at]jianxu[dot]net
 ### Demo of HON: please visit http://www.HigherOrderNetwork.com
-### Latest code: please visit https://github.com/xyjprc/hon
+### Latest code: please visit https://github.com/rickwen1234/hon
 
 ### Major update: parameter free and magnitudes faster than previous versions.
 ### Paper and pseudocode: https://arxiv.org/abs/1712.09658

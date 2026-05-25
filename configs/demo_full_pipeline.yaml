@@ -1,0 +1,15 @@
+hon:
+  input: examples/toy_timestamped_sequences.csv
+  input_format: csv_events
+  output_dir: outputs/demo_full_pipeline/hon
+  max_order: 3
+  min_support: 1
+multilayer:
+  output_dir: outputs/demo_full_pipeline/multilayer
+  seed: 42
+cascade:
+  output_dir: outputs/demo_full_pipeline/cascade
+  layer_a: A
+  layer_b: B
+visualization:
+  output_dir: outputs/demo_full_pipeline/figures

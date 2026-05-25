@@ -4,7 +4,7 @@
 
 ### Technical questions? Please contact i[at]jianxu[dot]net
 ### Demo of HON: please visit http://www.HigherOrderNetwork.com
-### Latest code: please visit https://github.com/xyjprc/hon
+### Latest code: please visit https://github.com/rickwen1234/hon
 
 ### Call BuildNetwork()
 ### Input: Higher-order dependency rules
@@ -21,13 +21,13 @@ def Initialize():
     Graph = defaultdict(dict)
 
 
-def BuildNetwork(Rules):
+def BuildNetwork(Rules, edge_weight_type="probability", rule_metadata=None):
     VPrint('Building network')
     Initialize()
     SortedSource = sorted(Rules, key=lambda x: len(x))
     for source in SortedSource:
         for target in Rules[source]:
-            Graph[source][(target,)] = Rules[source][target]
+            Graph[source][(target,)] = _edge_weight(Rules, source, target, edge_weight_type, rule_metadata)
             # following operations are destructive to Rules
             if len(source) > 1:
                 Rewire(source, (target,))
@@ -68,3 +68,16 @@ def RewireTails():
 def VPrint(string):
     if Verbose:
         print(string)
+
+
+def _edge_weight(Rules, source, target, edge_weight_type, rule_metadata):
+    if edge_weight_type == "probability":
+        return Rules[source][target]
+    if rule_metadata is None:
+        return Rules[source][target]
+    metadata = rule_metadata.get((source, target), {})
+    if edge_weight_type == "weighted_support":
+        return metadata.get("weighted_support", Rules[source][target])
+    if edge_weight_type == "raw_support":
+        return metadata.get("raw_support", Rules[source][target])
+    raise ValueError("Unknown edge_weight_type: " + str(edge_weight_type))

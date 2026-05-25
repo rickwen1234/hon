@@ -1,0 +1,26 @@
+output_dir: outputs/demo_multilayer
+seed: 42
+layers:
+  - name: A
+    source: generated
+    model: poisson
+    n: 100
+    mean_degree: 8
+  - name: B
+    source: generated
+    model: scale_free
+    n: 100
+    gamma: 2.5
+    mean_degree: 8
+dependencies:
+  - source_layer: A
+    target_layer: B
+    mode: random_matching
+    q: 0.8
+simplices:
+  - layer: A
+    mode: poisson_triangles
+    mean_triangle_degree: 0.4
+  - layer: B
+    mode: poisson_triangles
+    mean_triangle_degree: 0.4

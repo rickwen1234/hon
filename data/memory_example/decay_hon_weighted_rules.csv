@@ -1,0 +1,6 @@
+order,source_path,target,probability,raw_support,weighted_support,base_weighted_support,kl_divergence,threshold,first_timestamp,last_timestamp,weighting_mode
+1,A,B,0.1418642214906154,1,0.36787944117144233,,,,2.0,2.0,decay
+1,A,C,0.47250884312295566,2,1.225300412818581,,,,3.0,10.0,decay
+1,A,D,0.38562693538642895,1,1.0,,,,12.0,12.0,decay
+1,B,A,1.0,1,0.7408182206817179,,,,9.0,9.0,decay
+1,C,A,1.0,1,0.6703200460356393,,,,8.0,8.0,decay

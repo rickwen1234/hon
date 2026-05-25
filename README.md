@@ -3,6 +3,63 @@ Python and Common Lisp code for generating the Higher-order Network (HON) from d
 * Input: Trajectories / sequential data, such as ship movements among ports, a person's clickstream of websites, and so on.
 * Output: HON edges in triplets [FromNode],[ToNode],[weight] as csv file.
 
+# Refactored project layout
+
+This repository now also exposes a research-friendly Python package under `src/network_science_project/`:
+
+* `hon`: HON and Cog-HON construction wrappers around the legacy `pyHON` implementation.
+* `multilayer`: layer management, generated layers, dependency links, simplices, validation, and Peng input export.
+* `cascade`: Peng-style two-layer cascade simulation utilities.
+* `visualization`: plotting functions for layers, multilayer networks, and cascade outputs.
+* `experiments` and `cli`: reproducible pipelines and command-line dispatch.
+
+Legacy scripts are preserved. New wrappers live in `scripts/`. See `docs/architecture.md`, `docs/data_formats.md`, and `docs/migration_guide.md` for the refactored usage path.
+
+## Quick Start
+
+Install dependencies:
+
+```powershell
+pip install -r requirements.txt
+pip install -e .
+```
+
+Build a generated two-layer multilayer network:
+
+```powershell
+ns-build-multilayer --output-dir outputs/mln_demo --layer A:generated:poisson:n=500,mean_degree=8 --layer B:generated:scale_free:n=500,gamma=2.5,mean_degree=8 --dependency A:B:random_matching:q=0.8 --simplices A:poisson_triangles:mean_triangle_degree=0.4 --simplices B:poisson_triangles:mean_triangle_degree=0.4 --seed 42
+```
+
+Run Peng-style cascade trials:
+
+```powershell
+ns-run-peng-cascade --input-dir outputs/mln_demo --layer-a A --layer-b B --output-dir outputs/mln_demo/cascade --trials 20 --seed 42
+```
+
+Create multilayer figures:
+
+```powershell
+ns-visualize-multilayer --input-dir outputs/mln_demo --output-dir outputs/mln_demo/figures --modes multilayer2d,multilayer3d,dependency_matrix,summary --seed 42
+```
+
+Run the full demo pipeline:
+
+```powershell
+ns-run-full-pipeline --config configs/demo_full_pipeline.yaml --output-dir outputs/full_demo --seed 42
+```
+
+The standard experiment layout is:
+
+```text
+outputs/<experiment_name>/
+  config_used.json
+  logs/
+  data/
+  figures/
+  metrics/
+  summary.json
+```
+
 # Major update
 Now *parameter-free* and *magnitudes faster* than the previous version!
 

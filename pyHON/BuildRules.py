@@ -4,7 +4,7 @@
 
 ### Technical questions? Please contact i[at]jianxu[dot]net
 ### Demo of HON: please visit http://www.HigherOrderNetwork.com
-### Latest code: please visit https://github.com/xyjprc/hon
+### Latest code: please visit https://github.com/rickwen1234/hon
 
 ### Call ExtractRules()
 ### Input: Trajectory

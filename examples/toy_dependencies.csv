@@ -1,0 +1,3 @@
+source_layer,source_node,target_layer,target_node,weight
+A,a,B,a,1.0
+A,b,B,b,1.0

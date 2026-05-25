@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "network-science-project"
+version = "0.1.0"
+description = "HON, Cog-HON, multilayer networks, Peng-style cascades, and visualization utilities."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "networkx>=2.8",
+  "numpy>=1.20",
+  "matplotlib>=3.5",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+visualization = ["plotly", "pyvis"]
+dev = ["pytest"]
+
+[project.scripts]
+ns-build-hon = "network_science_project.cli.hon_cli:main"
+ns-build-memory-hon = "network_science_project.cli.memory_hon_cli:main"
+ns-build-multilayer = "network_science_project.cli.multilayer_cli:main"
+ns-run-peng-cascade = "network_science_project.cli.cascade_cli:main"
+ns-run-full-pipeline = "network_science_project.cli.pipeline_cli:main"
+ns-visualize-multilayer = "network_science_project.cli.visualization_cli:main"
+ns-summarize-results = "network_science_project.cli.summary_cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

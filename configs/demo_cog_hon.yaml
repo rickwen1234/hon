@@ -1,0 +1,10 @@
+input: examples/toy_timestamped_sequences.csv
+input_format: csv_events
+output_dir: outputs/demo_cog_hon
+max_order: 3
+min_support: 1
+weighting_mode: cogsnet
+decay_mode: exp
+lambda: 0.1
+mu: 0.5
+theta: 0.01
